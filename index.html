@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video trailer popup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <style>
+        body{
+            margin:0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            display:flex;
+            justify-content: center;
+            height:100vh;
+            align-items: center;
+            background-color: black;
+        }
+        /*this is for side by side no spacing*/
+        .container{
+            max-width:550px;
+            padding:10px;
+        }
+        .container img{
+            max-width: 100%;
+            margin-bottom: 15px;
+            border-radius:10px;
+        }
+        .container h2{
+            color:white;
+            font-weight: 500;
+            font-size: 2em;
+        }
+        .container p{
+            color:white;
+            margin:15px;
+        }
+        
+        /*trailercontent fixed in center*/
+        .trailer-container{
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            background-color: black;
+            display:flex;
+            justify-content: center;
+            height:100%;
+            width:100%;
+            align-items: center;
+            opacity:1;
+            transition:opacity 0.4s;
+        }
+        .btn{
+            border:0;
+            outline:0;
+            background-color: white;
+            padding:10px 20px;
+            cursor:pointer;
+            text-transform: uppercase;
+        }
+        .btn:hover{
+            background-color: aqua;
+            transition: 0.5s;
+            border:1px solid black;
+        }
+        .trailer-container video{
+            position: relative;
+            max-height: 500px;
+            outline:none;
+            
+        }
+        @media(max-width:991px){
+            .trailer-container video{
+                max-width: 90%;
+            }
+        }
+       .closeIcon{
+            position: absolute;
+            top:30px;
+            right:30px;
+            color:white;
+            transition:opacity 1s;
+        }
+        /*dont give space active and trailer container*/
+         .active.trailer-container{
+            visibility:hidden;
+            opacity:0;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://images.pexels.com/photos/2873486/pexels-photo-2873486.jpeg?auto=compress&cs=tinysrgb&w=600">
+        <h2>Movie tItle</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus consectetur facilis, 
+        placeat nisi quam tempore itaque, praesentium sequi eaque, 
+        ipsam eius accusantium expedita vero quia totam corrupti ducimus a modi!</p>
+        <button class="btn">Watch Now</button>
+    </div>
+    <div class="trailer-container active">
+        <video src="https://player.vimeo.com/progressive_redirect/playback/794956399/rendition/540p/file.mp4?loc=external&oauth2_token_id=57447761&signature=4abd268edfe0a16e6bface97fabca09c6a08ddd1e6c9c833b1403a3d8af47103" controls>
+        </video>
+        <i class="fa-solid fa-xmark fa-2x closeIcon"></i>
+    </div>
+    <script>
+        //thhis are predefined classes like E1
+        const btnE1=document.querySelector(".btn");
+        const videoE1=document.querySelector("video");
+        const closeIconE1=document.querySelector(".closeIcon");
+        const trailerContainerE1=document.querySelector(".trailer-container");
+        btnE1.addEventListener("click", ()=>{
+            trailerContainerE1.classList.remove("active");
+        });
+        closeIconE1.addEventListener("click", ()=>{
+            trailerContainerE1.classList.add("active");
+            //when we click on icon video will pause
+            videoE1.pause();
+        });
+    </script>
+</body>
+</html>
